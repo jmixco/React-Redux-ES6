@@ -18,13 +18,13 @@ const TextInput = ({ name, label, placeholder, onChange, value, error }) => {
 
         </div>
     );
-}
+};
 TextInput.propTypes = {
     name: React.PropTypes.string.isRequired,
     label: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func.isRequired,
     placeholder: React.PropTypes.string,
     value: React.PropTypes.string,
-    errors: React.PropTypes.string
+    error: React.PropTypes.string
 };
 export default TextInput;

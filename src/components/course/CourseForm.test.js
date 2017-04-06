@@ -1,4 +1,4 @@
-import expect from 'expect'
+import expect from 'expect';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import CourseForm from './CourseForm';
@@ -21,7 +21,7 @@ function setup(saving) {
         output,
         renderer
     };
-};
+}
 
 //describe('',()=>{});
 describe('CourseForm via react test utils', () => {

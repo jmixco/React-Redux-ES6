@@ -1,4 +1,4 @@
-import expect from 'expect'
+import expect from 'expect';
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import CourseForm from './CourseForm';
@@ -11,7 +11,7 @@ function setup(saving) {
         onSave: () => { },
         onChange: () => { }
     };
-    return shallow(<CourseForm {...props} />)
+    return shallow(<CourseForm {...props} />);
 }
 describe('CourseForm via Enzyme', () => {
     it('renders form and h1', () => {

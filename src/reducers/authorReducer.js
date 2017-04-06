@@ -7,7 +7,6 @@ export default function authorReucer(state = initialState.authors, action) {
         case types.LOAD_AUTHORS_SUCCESS:
             return action.authors;
 
-            break;
         default:
             break;
     }
