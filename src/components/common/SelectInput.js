@@ -17,7 +17,7 @@ const SelectInput = ({ name, label, onChange,defaultOption, placeholder, options
                     <option value="">{defaultOption} </option>
                     {
                         options.map((option) => {
-                            return <option key={option.value} value={option.value}>{option.text}</option>
+                            return <option key={option.value} value={option.value}>{option.text}</option>;
                         })
                     }
                 </select>
@@ -28,7 +28,7 @@ const SelectInput = ({ name, label, onChange,defaultOption, placeholder, options
 
         </div>
     );
-}
+};
 SelectInput.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
@@ -36,7 +36,7 @@ SelectInput.propTypes = {
     defaultOption: PropTypes.string,
     placeholder: PropTypes.string,
     value: PropTypes.string,
-    errors: PropTypes.string,
+    error: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.object)
 };
 export default SelectInput;
