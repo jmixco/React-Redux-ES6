@@ -1,8 +1,10 @@
 "use strict";
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseActions';
+import CourseList from './CourseList';
 
 class CoursesPage extends React.Component {
     constructor(props, context) {
@@ -13,6 +15,7 @@ class CoursesPage extends React.Component {
         };
         this.onTitleChange = this.onTitleChange.bind(this);
         this.onClickSave = this.onClickSave.bind(this);
+        this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
     }
 
     onTitleChange(event) {
@@ -23,25 +26,28 @@ class CoursesPage extends React.Component {
 
     onClickSave() {
         //injected by connect
-        this.props.createCourse(this.state.course);
+        this.props.actions.createCourse(this.state.course);
     }
 
     courseRow(course, index) {
         return (<div key={index}>{course.title}</div>);
     }
 
+    redirectToAddCoursePage() {
+        browserHistory.push('/course');
+    }
+
     render() {
+        const { courses } = this.props;
         return (
             <div>
                 <h1>Courses</h1>
-                {this.props.courses.map(this.courseRow)}
-                <h2>Add Course</h2>
-                <input type="text" onChange={this.onTitleChange}
-                    value={this.state.course.title} />
-
                 <input type="submit"
-                    value="Save"
-                    onClick={this.onClickSave} />
+                    value="Add Course"
+                    className="btn btn-primary"
+                    onClick={this.redirectToAddCoursePage} />
+                <CourseList courses={courses} />
+
             </div>
         );
     }
@@ -49,9 +55,9 @@ class CoursesPage extends React.Component {
 
 CoursesPage.propTypes = {
     //dispatch is no longer injected when mapDispatchToProps is injected
-   // dispatch: PropTypes.func.isRequired, 
+    // dispatch: PropTypes.func.isRequired, 
     courses: PropTypes.array.isRequired,
-    createCourse: PropTypes.func.isRequired
+    actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
@@ -61,7 +67,8 @@ function mapStateToProps(state, ownProps) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        createCourse: course => dispatch(courseActions.createCourse(course))
+        //createCourse: course => dispatch(courseActions.createCourse(course))
+        actions: bindActionCreators(courseActions, dispatch) // bind every action
     };
 }
 
